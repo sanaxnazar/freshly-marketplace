@@ -1,7 +1,14 @@
+import os
+from dotenv import load_dotenv
 from pymongo import MongoClient
 import certifi
 
-MONGO_URI = "mongodb+srv://sana_nazar:sana_nazar@shop.cb76vbq.mongodb.net/?appName=shop"
+# Load the secret .env file
+load_dotenv()
+
+# Get the URI from the environment variable
+MONGO_URI = os.getenv("MONGO_URI")
+
 client = MongoClient(MONGO_URI, tlsCAFile=certifi.where())
 db = client["shopping_db"]
 
