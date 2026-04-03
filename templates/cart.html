@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Bag — Freshly</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #7e57c2; --purple-light: #ede7f6; --text: #2d2250;
+      --text-muted: #9e9bb0; --border: #ede8f8; --bg: #ffffff; --green: #4caf50;
+    }
+    body { font-family: 'Quicksand', sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 40px 20px; }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { font-family: 'Poppins', sans-serif; font-size: 28px; margin-bottom: 30px; }
+    .cart-item { display: flex; align-items: center; padding: 20px; border: 1.5px solid var(--border); border-radius: 20px; margin-bottom: 15px; gap: 20px; }
+    .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 12px; background: #f9f9f9; }
+    .item-info { flex: 1; }
+    .item-name { font-weight: 700; font-size: 16px; display: block; }
+    .item-price { color: var(--purple); font-weight: 700; font-size: 18px; }
+    .checkout-card { background: var(--purple-light); padding: 30px; border-radius: 20px; margin-top: 30px; text-align: right; }
+    .total-label { font-size: 14px; font-weight: 600; color: var(--purple); }
+    .total-amount { font-size: 32px; font-weight: 700; display: block; margin-bottom: 20px; }
+    .btn-buy { background: var(--purple); color: white; border: none; padding: 16px 40px; border-radius: 980px; font-weight: 700; cursor: pointer; font-size: 16px; transition: transform 0.2s; }
+    .btn-buy:hover { transform: translateY(-2px); background: #5e35b1; }
+    .empty-state { text-align: center; padding: 100px 0; }
+    .back-link { color: var(--purple); text-decoration: none; font-weight: 700; margin-bottom: 20px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back-link">← Continue Shopping</a>
+    <h1>Review your items 🛒</h1>
+
+    {% if items %}
+      {% for item in items %}
+      <div class="cart-item">
+        <img src="{{ item.image_url }}" alt="{{ item.name }}">
+        <div class="item-info">
+          <span class="item-name">{{ item.name }}</span>
+          <span style="font-size: 13px; color: var(--text-muted);">{{ item.category }}</span>
+        </div>
+        <div class="item-price">${{ "%.2f"|format(item.price) }}</div>
+      </div>
+      {% endfor %}
+
+      <div class="checkout-card">
+        <span class="total-label">Estimated Total</span>
+        <span class="total-amount">${{ "%.2f"|format(total) }}</span>
+        <button class="btn-buy" onclick="placeOrder()">Place Order →</button>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <p style="font-size: 40px;">🧺</p>
+        <p>Your bag is empty. Let's find something fresh!</p>
+        <a href="/" class="btn-buy" style="text-decoration:none; display:inline-block;">Browse Shop</a>
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+    async function placeOrder() {
+      const res = await fetch('/checkout', { method: 'POST' });
+      const data = await res.json();
+      alert(data.message);
+      window.location.href = "/";
+    }
+  </script>
+</body>
+</html>

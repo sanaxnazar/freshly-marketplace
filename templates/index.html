@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freshly — Organic Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+ 
+  <style>
+    /* ── Variables & Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --bg:            #ffffff;
+      --surface:       #faf8ff;
+      --surface-2:     #f3eeff;
+      --purple:        #7e57c2;
+      --purple-light:  #ede7f6;
+      --purple-dark:   #5e35b1;
+      --green:         #4caf50;
+      --green-light:   #e8f5e9;
+      --text:          #2d2250;
+      --text-muted:    #9e9bb0;
+      --border:        #ede8f8;
+      --radius:        20px;
+      --radius-sm:     12px;
+      --shadow:        0 4px 24px rgba(126,87,194,0.10);
+      --shadow-hover:  0 12px 40px rgba(126,87,194,0.20);
+      --transition:    0.24s cubic-bezier(.4,0,.2,1);
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+ 
+    /* ── Top Bar ───────────────────────────────────────────────────────── */
+    .topbar {
+      background: var(--purple);
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      letter-spacing: 0.02em;
+    }
+    .topbar span { opacity: 0.85; margin: 0 6px; }
+ 
+    /* ── Header ────────────────────────────────────────────────────────── */
+    header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+ 
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+ 
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--purple);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .logo sup { font-size: 11px; vertical-align: super; opacity: 0.7; }
+ 
+    /* Search */
+    .search-wrap {
+      flex: 1;
+      position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
+      padding: 12px 20px 12px 46px;
+      border: 2px solid var(--border);
+      border-radius: 980px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--surface);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .search-wrap input::placeholder { color: var(--text-muted); }
+    .search-wrap input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 4px rgba(126,87,194,0.10);
+    }
+    .search-wrap .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 17px;
+      pointer-events: none;
+    }
+    .search-wrap .btn-search {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      border-radius: 980px;
+      padding: 7px 18px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .search-wrap .btn-search:hover { background: var(--purple-dark); }
+ 
+    /* Header Actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+ 
+    .user-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--purple-light);
+      color: var(--purple-dark);
+      border-radius: 980px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+ 
+    .btn-nav {
+      background: transparent;
+      color: var(--purple);
+      border: 2px solid var(--border);
+      border-radius: 980px;
+      padding: 8px 18px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .btn-nav:hover { border-color: var(--purple); background: var(--purple-light); }
+ 
+    .btn-nav-fill {
+      background: var(--purple);
+      color: #fff;
+      border: 2px solid var(--purple);
+      border-radius: 980px;
+      padding: 8px 18px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+    .btn-nav-fill:hover { background: var(--purple-dark); }
+ 
+    /* ── Hero Banner ───────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--purple) 0%, #9c4dcc 60%, #7e57c2 100%);
+      color: #fff;
+      padding: 52px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.12) 0%, transparent 50%),
+        radial-gradient(circle at 10% 80%, rgba(255,255,255,0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+ 
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+ 
+    .hero-text { position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.20);
+      border: 1px solid rgba(255,255,255,0.30);
+      border-radius: 980px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: 15px;
+      opacity: 0.88;
+      max-width: 400px;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+ 
+    .btn-hero {
+      background: #fff;
+      color: var(--purple-dark);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 980px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .btn-hero:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.18); }
+ 
+    .hero-emojis {
+      font-size: 72px;
+      line-height: 1;
+      letter-spacing: 4px;
+      animation: float 4s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+ 
+    /* ── Category Strip ────────────────────────────────────────────────── */
+    .categories-section {
+      max-width: 1200px;
+      margin: 36px auto 0;
+      padding: 0 24px;
+    }
+ 
+    .categories-section h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+ 
+    .categories-strip {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .categories-strip::-webkit-scrollbar { display: none; }
+ 
+    .cat-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 24px;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition);
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 90px;
+    }
+    .cat-chip:hover, .cat-chip.active {
+      background: var(--purple-light);
+      border-color: var(--purple);
+      transform: translateY(-2px);
+    }
+    .cat-chip .cat-icon { font-size: 30px; }
+    .cat-chip .cat-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .cat-chip.active .cat-name { color: var(--purple-dark); }
+ 
+    /* ── Savings Banner ────────────────────────────────────────────────── */
+    .savings-banner {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 24px;
+    }
+    .savings-inner {
+      background: var(--green-light);
+      border: 1.5px solid #c8e6c9;
+      border-radius: var(--radius);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .savings-inner .icon { font-size: 32px; }
+    .savings-inner p {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2e7d32;
+      line-height: 1.5;
+    }
+    .savings-inner strong { font-size: 16px; }
+ 
+    /* ── Toast ─────────────────────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--green);
+      color: #fff;
+      padding: 13px 26px;
+      border-radius: 980px;
+      font-size: 14px;
+      font-weight: 700;
+      z-index: 400;
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+      pointer-events: none;
+      white-space: nowrap;
+      box-shadow: 0 8px 30px rgba(76,175,80,0.35);
+    }
+    #toast.error-toast { background: #e53935; box-shadow: 0 8px 30px rgba(229,57,53,0.35); }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+ 
+    /* ── Products Section ──────────────────────────────────────────────── */
+    .products-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 70px;
+    }
+ 
+    .products-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+    .products-header h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .products-header span {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+ 
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+ 
+    /* ── Product Card ──────────────────────────────────────────────────── */
+    .card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-card img {
+    width: 100% !important;
+    height: 180px !important;
+    display: block !important;
+    object-fit: contain !important;
+    background: #ffffff !important;
+    }
+    
+ 
+    /* Wishlist heart */
+    .btn-heart {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255,255,255,0.90);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 17px;
+      z-index: 2;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+      transition: transform var(--transition), background var(--transition);
+    }
+    .btn-heart:hover { transform: scale(1.15); }
+    .btn-heart.liked { background: #ffe0e0; }
+    .btn-heart .heart { transition: transform 0.2s; }
+    .btn-heart.liked .heart { transform: scale(1.2); }
+ 
+    .card-img-wrap {
+      position: relative;
+      background: var(--surface);
+      aspect-ratio: 1;
+      overflow: hidden;
+    }
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .card:hover .card-img-wrap img { transform: scale(1.06); }
+ 
+    /* Badge */
+    .badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--green);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 980px;
+      z-index: 2;
+    }
+ 
+    .card-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+ 
+    .card-category {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 6px;
+    }
+ 
+    .card-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+ 
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .price-now {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .price-unit {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .price-old {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: line-through;
+      margin-left: auto;
+    }
+    .price-saving {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--green);
+      background: var(--green-light);
+      padding: 2px 8px;
+      border-radius: 980px;
+    }
+ 
+    .btn-add-cart {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 13px 20px;
+      border-radius: var(--radius-sm);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      margin-top: auto;
+    }
+    .btn-add-cart:hover { background: var(--purple-dark); transform: translateY(-1px); }
+    .btn-add-cart.added  { background: var(--green); }
+    .btn-add-cart.adding { opacity: 0.75; pointer-events: none; }
+ 
+    /* ── Empty state ───────────────────────────────────────────────────── */
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+    .empty .empty-icon { font-size: 56px; margin-bottom: 16px; }
+    .empty p { font-size: 16px; font-weight: 600; }
+ 
+    /* ── Modal ─────────────────────────────────────────────────────────── */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(45,34,80,0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+    }
+    .modal-backdrop.active { display: flex; }
+ 
+    .modal {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 42px 36px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 40px 100px rgba(126,87,194,0.25);
+      animation: pop 0.28s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes pop {
+      from { opacity:0; transform: scale(0.94); }
+      to   { opacity:1; transform: scale(1); }
+    }
+ 
+    .modal-tabs {
+      display: flex;
+      gap: 0;
+      background: var(--surface);
+      border-radius: var(--radius-sm);
+      padding: 4px;
+      margin-bottom: 28px;
+    }
+    .modal-tab {
+      flex: 1;
+      text-align: center;
+      padding: 9px;
+      border-radius: 9px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: all var(--transition);
+      border: none;
+      background: transparent;
+      font-family: 'Quicksand', sans-serif;
+    }
+    .modal-tab.active { background: var(--bg); color: var(--purple); box-shadow: var(--shadow); }
+ 
+    .modal-panel { display: none; }
+    .modal-panel.active { display: block; }
+ 
+    .modal h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .modal .subtitle { color: var(--text-muted); font-size: 13px; margin-bottom: 22px; }
+ 
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+    .form-group input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--surface);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group input:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 4px rgba(126,87,194,0.10);
+    }
+ 
+    .btn-modal-submit {
+      width: 100%;
+      background: var(--purple);
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      font-family: 'Quicksand', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background var(--transition);
+    }
+    .btn-modal-submit:hover { background: var(--purple-dark); }
+ 
+    .modal-close {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text-muted);
+      line-height: 1;
+      margin-top: -6px;
+      transition: color var(--transition);
+    }
+    .modal-close:hover { color: var(--text); }
+ 
+    #modal-msg {
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      min-height: 18px;
+      margin-top: 10px;
+    }
+    #modal-msg.success { color: var(--green); }
+    #modal-msg.error   { color: #e53935; }
+ 
+    /* ── Footer ────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--surface-2);
+      border-top: 1.5px solid var(--border);
+      padding: 36px 24px;
+      text-align: center;
+    }
+    footer .footer-logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--purple);
+      margin-bottom: 8px;
+    }
+    footer p { font-size: 13px; color: var(--text-muted); font-weight: 600; }
+ 
+    @media (max-width: 640px) {
+      .header-inner { flex-wrap: wrap; }
+      .search-wrap  { order: 3; width: 100%; flex: unset; }
+      .hero-emojis  { display: none; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .modal { padding: 30px 22px; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <!-- ── Top Promo Bar ─────────────────────────────────────────────────── -->
+  <div class="topbar">
+    🌿 Free delivery on orders over $30 <span>·</span> 100% Organic Guaranteed <span>·</span> Same-day dispatch
+  </div>
+ 
+  <!-- ── Header ───────────────────────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="/">Freshly<sup>®</sup></a>
+ 
+      <form class="search-wrap" method="GET" action="/">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          name="q"
+          placeholder="Search fresh produce, dairy…"
+          value="{{ query }}"
+        />
+        <button type="submit" class="btn-search">Search</button>
+      </form>
+ 
+      <div class="header-actions">
+        {% if user_name %}
+          <div class="user-chip">👋 {{ user_name }}</div>
+          <a href="/cart" class="btn-nav" style="text-decoration:none;">🛒 Bag</a>
+          <button class="btn-nav" onclick="doLogout()">Log out</button>
+        {% else %}
+          <button class="btn-nav" onclick="openModal('login')">Log in</button>
+          <button class="btn-nav-fill" onclick="openModal('register')">Sign up</button>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+ 
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-tag">🌱 Spring Collection 2025</span>
+        <h1>Farm-Fresh<br />Delivered to<br />Your Door</h1>
+        <p>Handpicked organic produce from local farms. Zero compromises on freshness, flavour, or your health.</p>
+        <a class="btn-hero" href="#products">Shop Now →</a>
+      </div>
+      <div class="hero-emojis">🍎🥛<br />🥬🍌</div>
+    </div>
+  </section>
+ 
+  <!-- ── Category Strip ────────────────────────────────────────────────── -->
+  <section class="categories-section">
+    <h2>Shop by Category</h2>
+    <div class="categories-strip">
+      <a class="cat-chip {% if not active_category %}active{% endif %}" href="/">
+        <span class="cat-icon">🛒</span>
+        <span class="cat-name">All</span>
+      </a>
+      {% for cat in categories %}
+      {% set icons = {"Fruits":"🍎","Vegetables":"🥦","Dairy":"🥛","Bakery":"🍞","Beverages":"🧃","Snacks":"🍿"} %}
+      <a class="cat-chip {% if active_category == cat %}active{% endif %}" href="/?category={{ cat }}">
+        <span class="cat-icon">{{ icons.get(cat, "🧺") }}</span>
+        <span class="cat-name">{{ cat }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+ 
+  <!-- ── Savings Banner ────────────────────────────────────────────────── -->
+  <div class="savings-banner">
+    <div class="savings-inner">
+      <span class="icon">💚</span>
+      <p><strong>Today's Savings:</strong> All Organic items are up to 25% off. Look for the green badge — your wallet and the planet will thank you.</p>
+    </div>
+  </div>
+  
+  <!-- ── Products ──────────────────────────────────────────────────────── -->
+  <section class="products-section" id="products">
+    <div class="products-header">
+      <h2>
+        {% if query %}Results for "{{ query }}"
+        {% elif active_category %}{{ active_category }}
+        {% else %}Fresh Picks 🌿
+        {% endif %}
+      </h2>
+      <span>{{ products|length }} item{% if products|length != 1 %}s{% endif %}</span>
+    </div>
+ 
+    <div class="products-grid">
+      {% for p in products %}
+      {% set saving = ((p.original_price - p.price) / p.original_price * 100)|round|int %}
+      <div class="card">
+        <!-- Wishlist heart -->
+        <button class="btn-heart" onclick="toggleHeart(this)" title="Wishlist">
+          <span class="heart">🤍</span>
+        </button>
+ 
+        <!-- Image -->
+        <div class="card-img-wrap">
+          <span class="badge">{{ p.badge }}</span>
+          <img src="{{ p.image_url }}" alt="{{ p.name }}" class="product-image">
+        </div>
+ 
+        <!-- Body -->
+        <div class="card-body">
+          <p class="card-category">{{ p.category }}</p>
+          <h3 class="card-name">{{ p.name }}</h3>
+ 
+          <div class="price-row">
+            <span class="price-now">${{ "%.2f"|format(p.price) }}</span>
+            <span class="price-unit">{{ p.unit }}</span>
+            {% if p.original_price and p.original_price > p.price %}
+              <span class="price-old">${{ "%.2f"|format(p.original_price) }}</span>
+            {% endif %}
+          </div>
+          {% if saving > 0 %}
+            <p class="price-saving" style="margin-bottom:14px;">Save {{ saving }}%</p>
+          {% endif %}
+ 
+          <button
+            class="btn-add-cart"
+            onclick="addToCart(this, '{{ p._id }}')"
+          >
+            🛒 Add to Cart
+          </button>
+        </div>
+      </div>
+      {% else %}
+      <div class="empty">
+        <div class="empty-icon">🥦</div>
+        <p>No products found. Try a different search or category.</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+ 
+  <!-- ── Auth Modal ────────────────────────────────────────────────────── -->
+  <div class="modal-backdrop" id="modal-backdrop" onclick="handleBackdropClick(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+ 
+      <div class="modal-tabs">
+        <button class="modal-tab" id="tab-register" onclick="switchTab('register')">Create Account</button>
+        <button class="modal-tab" id="tab-login"    onclick="switchTab('login')">Log In</button>
+      </div>
+ 
+      <!-- Register Panel -->
+      <div class="modal-panel" id="panel-register">
+        <h2>Join Freshly 🌿</h2>
+        <p class="subtitle">Start your farm-fresh journey today.</p>
+        <div class="form-group"><label>Full Name</label><input id="reg-name" type="text" placeholder="Jane Smith" /></div>
+        <div class="form-group"><label>Email</label><input id="reg-email" type="email" placeholder="jane@example.com" /></div>
+        <div class="form-group"><label>Password</label><input id="reg-pass" type="password" placeholder="••••••••" /></div>
+        <button class="btn-modal-submit" onclick="submitRegister()">Create My Account →</button>
+      </div>
+ 
+      <!-- Login Panel -->
+      <div class="modal-panel" id="panel-login">
+        <h2>Welcome Back 👋</h2>
+        <p class="subtitle">Log in to access your cart and orders.</p>
+        <div class="form-group"><label>Email</label><input id="login-email" type="email" placeholder="jane@example.com" /></div>
+        <div class="form-group"><label>Password</label><input id="login-pass" type="password" placeholder="••••••••" /></div>
+        <button class="btn-modal-submit" onclick="submitLogin()">Log In →</button>
+      </div>
+ 
+      <p id="modal-msg"></p>
+    </div>
+  </div>
+ 
+  <!-- ── Toast ────────────────────────────────────────────────────────── -->
+  <div id="toast"></div>
+ 
+  <!-- ── Footer ───────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-logo">Freshly®</div>
+    <p>DBMS University Project · Built with Flask &amp; MongoDB Atlas · 2025</p>
+  </footer>
+ 
+  <script>
+    /* ── Modal ─────────────────────────────────────────────────────────── */
+    function openModal(tab = 'register') {
+      document.getElementById('modal-backdrop').classList.add('active');
+      switchTab(tab);
+      clearModalMsg();
+    }
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.remove('active');
+    }
+    function handleBackdropClick(e) {
+      if (e.target === document.getElementById('modal-backdrop')) closeModal();
+    }
+    function switchTab(tab) {
+      ['register','login'].forEach(t => {
+        document.getElementById('tab-'+t).classList.toggle('active', t === tab);
+        document.getElementById('panel-'+t).classList.toggle('active', t === tab);
+      });
+      clearModalMsg();
+    }
+    function clearModalMsg() {
+      const m = document.getElementById('modal-msg');
+      m.textContent = ''; m.className = '';
+    }
+    function setModalMsg(text, type) {
+      const m = document.getElementById('modal-msg');
+      m.textContent = text; m.className = type;
+    }
+ 
+    /* ── Register ──────────────────────────────────────────────────────── */
+    async function submitRegister() {
+      const name     = document.getElementById('reg-name').value.trim();
+      const email    = document.getElementById('reg-email').value.trim();
+      const password = document.getElementById('reg-pass').value.trim();
+      if (!name || !email || !password) { setModalMsg('Please fill in all fields.', 'error'); return; }
+      try {
+        const res  = await fetch('/register', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({name, email, password})
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setModalMsg('✓ ' + data.message, 'success');
+          setTimeout(() => { closeModal(); location.reload(); }, 1400);
+        } else {
+          setModalMsg(data.error || 'Something went wrong.', 'error');
+        }
+      } catch { setModalMsg('Network error.', 'error'); }
+    }
+ 
+    /* ── Login ─────────────────────────────────────────────────────────── */
+    async function submitLogin() {
+      const email    = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-pass').value.trim();
+      if (!email || !password) { setModalMsg('Please fill in all fields.', 'error'); return; }
+      try {
+        const res  = await fetch('/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email, password})
+        });
+        const data = await res.json();
+        if (res.ok) {
+          setModalMsg('✓ ' + data.message, 'success');
+          setTimeout(() => { closeModal(); location.reload(); }, 1200);
+        } else {
+          setModalMsg(data.error || 'Login failed.', 'error');
+        }
+      } catch { setModalMsg('Network error.', 'error'); }
+    }
+ 
+    /* ── Logout ────────────────────────────────────────────────────────── */
+    async function doLogout() {
+      await fetch('/logout');
+      location.reload();
+    }
+ 
+    /* ── Add to Cart ───────────────────────────────────────────────────── */
+    async function addToCart(btn, productId) {
+      btn.classList.add('adding');
+      btn.textContent = '⏳ Adding…';
+      try {
+        const res  = await fetch('/add_to_cart', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({product_id: productId})
+        });
+        const data = await res.json();
+        if (res.ok) {
+          btn.classList.remove('adding');
+          btn.classList.add('added');
+          btn.textContent = '✓ Added!';
+          showToast('🛒 ' + data.message, false);
+          setTimeout(() => {
+            btn.classList.remove('added');
+            btn.textContent = '🛒 Add to Cart';
+          }, 2200);
+        } else {
+          btn.classList.remove('adding');
+          btn.textContent = '🛒 Add to Cart';
+          if (res.status === 401) {
+            showToast('Please log in or register first.', true);
+            setTimeout(() => openModal('register'), 800);
+          } else {
+            showToast(data.error || 'Could not add.', true);
+          }
+        }
+      } catch {
+        btn.classList.remove('adding');
+        btn.textContent = '🛒 Add to Cart';
+        showToast('Network error.', true);
+      }
+    }
+ 
+    /* ── Wishlist Heart ─────────────────────────────────────────────────── */
+    function toggleHeart(btn) {
+      btn.classList.toggle('liked');
+      btn.querySelector('.heart').textContent = btn.classList.contains('liked') ? '❤️' : '🤍';
+    }
+ 
+    /* ── Toast ─────────────────────────────────────────────────────────── */
+    let toastTimer;
+    function showToast(msg, isError = false) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = isError ? 'error-toast' : '';
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+    }
+  </script>
+</body>
+</html>
