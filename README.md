@@ -1,9 +1,11 @@
 **🌿 Freshly Marketplace**
+
 Freshly Marketplace is a full-stack e-commerce web application built for the modern grocery shopping experience. It connects users with fresh, organic produce through a clean, responsive interface.
 
 **🚀 Live Demo:** https://freshly-marketplace.onrender.com/
 
 **✨ Features**
+
 Dynamic Product Catalog: Real-time rendering of grocery items (Fruits, Vegetables, Dairy) sourced from MongoDB Atlas.
 
 Green Theme Branding: A custom-designed UI focused on an organic, "fresh" aesthetic.
@@ -15,6 +17,7 @@ Responsive Design: Fully optimized for both desktop and mobile browsing.
 Search Functionality: Quickly find specific fresh picks across categories.
 
 **🛠️ Tech Stack**
+
 Frontend: HTML5, CSS3 (Custom Flexbox/Grid Layouts)
 
 Backend: Python 🐍 + Flask
@@ -67,6 +70,7 @@ Plaintext
     └── index.html      # Main frontend template
 
 **👤 Author**
+
 Sana Nazar
 GitHub: @sanaxnazar
 
