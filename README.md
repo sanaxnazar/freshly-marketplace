@@ -29,27 +29,39 @@ Deployment: Render (Cloud Hosting)
 Security: python-dotenv for API keys and certifi for SSL Handshake.
 
 **🚀 Local Setup Instructions**
+
 If you want to run this project locally, follow these steps:
 
 **Clone the repository:**
 
 Bash
+
 git clone https://github.com/sanaxnazar/freshly-marketplace.git
+
 cd freshly-marketplace
+
 Create a Virtual Environment:
 
 Bash
+
 python -m venv venv
+
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+
 Install Dependencies:
 
 Bash
+
 pip install -r requirements.txt
+
 Set up Environment Variables:
+
 Create a .env file and add your MongoDB connection:
 
 Code snippet
+
 MONGO_URI=your_mongodb_atlas_uri_here
+
 SECRET_KEY=your_secret_key
 Run the App:
 
@@ -58,13 +70,21 @@ python app.py
 View at http://127.0.0.1:5000
 
 📂 Project Structure
+
 Plaintext
+
 ├── app.py              # Main Flask Application
+
 ├── seed_db.py          # Script to populate MongoDB with initial data
+
 ├── requirements.txt     # List of Python dependencies
+
 ├── vercel.json         # Deployment configuration
+
 ├── static/
+
 │   ├── css/            # Stylesheets
+
 │   └── images/         # Product and branding assets
 └── templates/
     └── index.html      # Main frontend template
@@ -72,5 +92,6 @@ Plaintext
 **👤 Author**
 
 Sana Nazar
+
 GitHub: @sanaxnazar
 
