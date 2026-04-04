@@ -60,5 +60,5 @@ SECRET_KEY=your_secret_key
 
 ## Authors 👤
 
-- [@sanaxnn](https://github.com/sanaxnazar)
+- [@sanaxnazar](https://github.com/sanaxnazar)
 
