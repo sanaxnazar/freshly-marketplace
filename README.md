@@ -1,4 +1,4 @@
-**🌿 Freshly Marketplace**
+## 🌿 Freshly Marketplace
 
 Freshly Marketplace is a full-stack e-commerce web application built for the modern grocery shopping experience. It connects users with fresh, organic produce through a clean, responsive interface.
 
